@@ -6,24 +6,47 @@ local function turtleFuel()
     end
 end
 
+local function leftTurn()
+    turtle.dig()
+    turtle.forward()
+    turtle.turnLeft()
+    turtle.dig()
+    turtle.forward()
+    turtle.turnRight()
+    turtle.dig()
+    turtle.forward()
+end
+
+local function rightTurn()
+    turtle.dig()
+    turtle.forward()
+    turtle.turnRight()
+    turtle.dig()
+    turtle.forward()
+    turtle.turnRight()
+    turtle.dig()
+    turtle.forward()
+end
+
 local function digLayer()
     turtleFuel()
     turtle.digDown()
     turtle.down()
-    for i = 1, 10 do
-        for a = 1, 15 do
+    for i = 1, 5 do
+        for i = 1, 10 do
             turtle.dig()
             turtle.forward()
         end
-        turtle.dig()
-        turtle.forward()
-        turtle.turnLeft()
-        turtle.dig()
-        turtle.forward()
-        turtle.turnLeft()
-        turtle.dig()
-        turtle.forward()
-        turtle.down()
+        leftTurn()
+        for i = 1, 10 do
+            turtle.dig()
+            turtle.forward()
+        end
+        rightTurn()
+        for i = 1, 10 do
+            turtle.dig()
+            turtle.forward()
+        end
     end
 end
 
