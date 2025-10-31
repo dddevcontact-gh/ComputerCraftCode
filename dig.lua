@@ -1,7 +1,7 @@
 local fuelLevel = turtle.getFuelLevel()
 
 local function turtleFuel()
-    if fuelLevel << 400 then
+    if fuelLevel < 400 then
         turtle.refuel(8)
     end
 end
