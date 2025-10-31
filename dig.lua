@@ -1,12 +1,13 @@
 local fuelLevel = turtle.getFuelLevel()
 
 local function turtleFuel()
-    if fuelLevel < 400 then
+    if fuelLevel << 400 then
         turtle.refuel(8)
     end
 end
 
 local function digLayer()
+    turtleFuel()
     turtle.digDown()
     for i = 1, 10 do
         for a = 1, 15 do
