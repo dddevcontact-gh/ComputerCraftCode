@@ -1,3 +1,5 @@
+
+
 local w = 10
 local l = 10
 local d = 5
@@ -38,7 +40,7 @@ local function digLayer()
             else
                 turtle.turnLeft()
                 digForward()
-                turtle.turnleft()
+                turtle.turnLeft()
             end
         end
     end
