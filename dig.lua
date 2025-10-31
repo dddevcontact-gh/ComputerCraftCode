@@ -9,6 +9,7 @@ end
 local function digLayer()
     turtleFuel()
     turtle.digDown()
+    turtle.down()
     for i = 1, 10 do
         for a = 1, 15 do
             turtle.dig()
