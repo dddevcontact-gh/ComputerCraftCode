@@ -4,7 +4,8 @@ local d = 5
 local minFuel = 200
 
 local function refuelIfNeeded()
-    if turtle.getFuelLevel() < MIN_FUEL then
+    local fuelLevel = turtle.getFuelLevel()
+    if fuelLevel < 200 then
         for slot = 1, 16 do
             turtle.select(slot)
             if turtle.refuel(0) then
