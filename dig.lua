@@ -1,53 +1,52 @@
-local fuelLevel = turtle.getFuelLevel()
+local w = 10
+local l = 10
+local d = 5
+local minFuel = 200
 
-local function turtleFuel()
-    if fuelLevel < 400 then
-        turtle.refuel(8)
+local function refuelIfNeeded()
+    if turtle.getFuelLevel() < MIN_FUEL then
+        for slot = 1, 16 do
+            turtle.select(slot)
+            if turtle.refuel(0) then
+                turtle.refuel(1)
+                break
+            end
+        end
     end
 end
 
-local function leftTurn()
-    turtle.dig()
-    turtle.forward()
-    turtle.turnLeft()
-    turtle.dig()
-    turtle.forward()
-    turtle.turnRight()
-    turtle.dig()
-    turtle.forward()
-end
-
-local function rightTurn()
-    turtle.dig()
-    turtle.forward()
-    turtle.turnRight()
-    turtle.dig()
-    turtle.forward()
-    turtle.turnRight()
-    turtle.dig()
+local function digForward()
+    while turtle.detect() do
+        turtle.dig()
+    end
     turtle.forward()
 end
 
 local function digLayer()
-    turtleFuel()
-    turtle.digDown()
-    turtle.down()
-    for i = 1, 5 do
-        for i = 1, 10 do
-            turtle.dig()
-            turtle.forward()
+    for i = 1, w do
+        for j = 1, l - 1 do
+            refuelIfNeeded()
+            digForward()
         end
-        leftTurn()
-        for i = 1, 10 do
-            turtle.dig()
-            turtle.forward()
-        end
-        rightTurn()
-        for i = 1, 10 do
-            turtle.dig()
-            turtle.forward()
+
+        if i < w then
+            if (i % 2 == 1) then
+                turtle.turnRight()
+                digForward()
+                turtle.turnRight()
+            else
+                turtle.turnLeft()
+                digForward()
+                turtle.turnleft()
+            end
         end
     end
 end
 
-digLayer()
+for level = 1, d do
+    digLayer()
+    turtle.digDown()
+    turtle.down()
+end
+
+print("digging done hb")
